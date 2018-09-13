@@ -28,3 +28,7 @@ Lorsque vous validez une facture, ses informations sont transmises à la platefo
 
 Ce module en est à sa version 1 initiale.
 N'hésitez pas à proposer de nouvelles fonctionnalités et/ou évolution via les issues de se répo.
+
+
+## Note
+Je n'ai aucun lien avec la plateforme KingAvis hormis le fait d'en être un utilisateur.
