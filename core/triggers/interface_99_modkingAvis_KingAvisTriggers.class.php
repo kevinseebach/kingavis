@@ -119,21 +119,6 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 
 						$iso_currency = $object->multicurrency_code;
 
-						// $contactlivraison = $object->getIdShippingContact(); //en fait on envoi pas au contact de livraison puisqu'on peut faire de la marque blanche
-						// if(!empty($contactlivraison)){
-						// 		//Si il y a un contact de livraison on lui envoi puisque c'est lui qui reception les produits
-						// 		require_once DOL_DOCUMENT_ROOT.'/contact/class/contact.class.php';
-						// 		$contact_livraison=new Contact($this->db);
-						// 		$contact_livraison->fetch($contactlivraison[0]);
-						// 		$nom = $contact_livraison->lastname;
-						// 		$prenom = $contact_livraison->firstname;
-						// 		$email= $contact_livraison->mail;
-						// 		if(empty($email)){ //pas d'email donc pas d'envoi
-						// 			setEventMessages($langs->trans("ErrorSendMailLivraison"),"", 'errors');
-						// 			return 1;
-						// 		}
-						// }
-						// else{
 							$prenom = $object->thirdparty->nom;
 							$nom = "( ".$object->thirdparty->name_alias." )";
 							$email = $object->thirdparty->email;
