@@ -16,6 +16,8 @@ Aller dans la configuration des modules et activer le mondule KingAvis (présent
 
 Configurer le module en renseignant votre ID, votre token et votre clef marchand. Ces informations sont disponibles sur votre compte KingAvis
 
+![Trouvez vos identifiants](https://king-avis.com/themes/default/img/pages/integration-code-manuel-2.jpg)
+
 
 ## Fonctionnement
 
