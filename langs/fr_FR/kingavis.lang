@@ -1,0 +1,53 @@
+# Copyright (C) 2018
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#
+# Générique
+#
+Reviews = Avis client
+
+# Module label 'ModulekingAvisName'
+ModulekingAvisName = Mon module
+# Module description 'ModulekingAvisDesc'
+ModulekingAvisDesc = Description de mon module
+modkingAvis = Module King Avis
+BackToModuleList = Retour à la liste des modules
+marchandID = Votre ID marchand
+marchandToken = Votre token marchand
+marchandPrivateKey = Votre clef privée marchand
+ErrorSend = Erreur lors de l'envoi vers King-Avis. Non importée
+ErrorSendMail = Erreur lors de l'envoi vers King-Avis. Aucun mail disponible. Non importée
+ErrorSendMailLivraison = Erreur lors de l'envoi vers King-Avis. Aucun mail disponible pour le contact de livraison. Non importée
+importSuccess = Importée avec succes sur King-Avis
+ErrorGeneral = Erreur lors de l'import sur King-Avis
+
+#
+# Page d'administration
+#
+kingAvisSetup = Configuration du module King-Avis
+Settings = Réglages
+kingAvisSetupPage = Page de réglage du module King-Avis
+FindYourInfo = Vous pouvez trouver ces informations sur votre espace King-Avis dans l'onglet Accueil de votre compte.
+#
+# Page À propos
+#
+About = À propos
+kingAvisAbout = À propos du module King-Avis
+kingAvisAboutPage = Page à propos du module King-Avis
+
+#
+# Page d'exemple
+#
+MyPageName = Nom de ma page
