@@ -119,16 +119,14 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 
 						$iso_currency = $object->multicurrency_code;
 
-							$prenom = $object->thirdparty->nom;
-							$nom = "( ".$object->thirdparty->name_alias." )";
-							$email = $object->thirdparty->email;
-							if(empty($email)){ //pas d'email donc pas d'envoi
+
+						$prenom = $object->thirdparty->nom;
+						$nom = "( ".$object->thirdparty->name_alias." )";
+						$email = $object->thirdparty->email;
+						if(empty($email)){ //pas d'email donc pas d'envoi
 								setEventMessages($langs->trans("ErrorSendMail"),"", 'errors');
 								return 1;
-							}
-						// }
-
-
+						}
 
 						//we've got all the infos - proceed sending
 						$curl = curl_init();
