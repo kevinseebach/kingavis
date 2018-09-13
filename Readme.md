@@ -20,3 +20,9 @@ Configurer le module en renseignant votre ID, votre token et votre clef marchand
 ## Fonctionnement
 
 Lorsque vous validez une facture, ses informations sont transmises à la plateforme qui envera le mail. Vous pouvez configurer le délai avant l'envoi dans votre compte King Avis.
+
+
+## Evolution
+
+Ce module en est à sa version 1 initiale.
+N'hésitez pas à proposer de nouvelles fonctionnalités et/ou évolution via les issues de se répo.
