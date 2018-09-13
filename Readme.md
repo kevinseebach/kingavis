@@ -14,7 +14,7 @@ Placer les dossiers dans votre instance Dolibarr (dossier htdocs)
 
 Aller dans la configuration des modules et activer le mondule KingAvis (présent dans le groupe Autres)
 
-Configurer le module en renseignant votre ID, votre token et votre clef marchand. Ces informations sont disponibles sur votre compte KingAvis
+Configurer le module en renseignant votre ID, votre token et votre clef marchand. Ces informations sont disponibles sur votre compte KingAvis (fonctionne même avec le compte gratuit)
 
 ![Trouvez vos identifiants](https://king-avis.com/themes/default/img/pages/integration-code-manuel-2.jpg)
 
