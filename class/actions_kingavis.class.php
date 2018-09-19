@@ -75,18 +75,12 @@ class Actionskingavis
 	public function addMoreActionsButtons($parameters, &$object, &$action, $hookmanager)
 	{
 		global $conf, $user, $langs;
-
 		$error = 0; // Error counter
-
 	    if (in_array($parameters['currentcontext'], array('invoicecard'))) {    // do something only for the context 'somecontext1' or 'somecontext2'
-
-
-
 					if($conf->global->kingavisAutomation == "false"){
 						$langs->load("kingavis@kingavis");
-						print '<a class="butAction" href="">'.$langs->trans("SendToKingAvis").'</a>';
+						print '<a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=sendKingAvis">'.$langs->trans("SendToKingAvis").'</a>';
 					}
-
 		}
 
 		if (! $error) {
@@ -100,6 +94,28 @@ class Actionskingavis
 
 
 
+	function doActions($parameters, &$object, &$action, $hookmanager)
+		{
+			$error = 0; // Error counter
+			$myvalue = 'test'; // A result value
 
+		 if (in_array($parameters['currentcontext'], array('invoicecard'))) {
+			  if($action == "sendKingAvis"){
+					//DO STUFF HERE
+				}
+			}
+
+			if (! $error)
+			{
+				$this->results = array('myreturn' => $myvalue);
+				$this->resprints = 'A text to show';
+				return 0; // or return 1 to replace standard code
+			}
+			else
+			{
+				$this->errors[] = 'Error message';
+				return -1;
+			}
+		}
 
 }
