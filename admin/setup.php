@@ -89,12 +89,15 @@ dol_fiche_head(
 // Setup page goes here
 echo $langs->trans("kingAvisSetupPage");
 $arrayofparameters=array('marchandID'=>array('marchandID'=>''), 'marchandToken'=>array('marchandToken'=>''), 'marchandPrivateKey'=>array('marchandPrivateKey'=>''));
+$arrayofparameters2 = array('kingavisAutomation'=>array('kingavisAutomation'=>''));
+
 
 if ($action == 'update' && empty($_POST["cancel"]))
 {
 	dolibarr_set_const($db, "marchandID",   $_POST["marchandID"],'chaine',0,'',$conf->entity);
 	dolibarr_set_const($db, "marchandToken",      $_POST["marchandToken"],'chaine',0,'',$conf->entity);
 	dolibarr_set_const($db, "marchandPrivateKey",     $_POST["marchandPrivateKey"],'chaine',0,'',$conf->entity);
+	dolibarr_set_const($db, "kingavisAutomation",     $_POST["kingavisAutomation"],'chaine',0,'',$conf->entity);
 }
 
 
@@ -111,6 +114,24 @@ if ($action == 'edit')
 		print $form->textwithpicto($langs->trans($key),$langs->trans('FindYourInfo'));
 		print '</td><td><input name="'.$key.'"  class="flat" value="' . $conf->global->$key . '"></td></tr>';
 	}
+	foreach($arrayofparameters2 as $key => $val)
+	{
+		print '<tr class="oddeven"><td>';
+		print $form->textwithpicto($langs->trans($key));
+		print '</td><td>';
+		print '<select  name="'.$key.'"><option value=true';
+		if ($conf->global->$key == true) {
+				print " selected ";
+		}
+		print '>Oui</option>';
+		print '<option value=false';
+		if ($conf->global->$key == false) {
+				print "selected";
+		}
+		print '>Non</option></select>';
+
+		print '</td></tr>';
+	}
 	print '</table>';
 	print '<br><div class="center">';
 	print '<input class="button" type="submit" value="'.$langs->trans("Save").'">';
@@ -126,6 +147,12 @@ else
 	{
 		print '<tr class="oddeven"><td>';
 		print $form->textwithpicto($langs->trans($key),$langs->trans('FindYourInfo'));
+		print '</td><td>' . $conf->global->$key . '</td></tr>';
+	}
+	foreach($arrayofparameters2 as $key => $val)
+	{
+		print '<tr class="oddeven"><td>';
+		print $form->textwithpicto($langs->trans($key));
 		print '</td><td>' . $conf->global->$key . '</td></tr>';
 	}
 	print '</table>';

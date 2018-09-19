@@ -79,8 +79,14 @@ class Actionskingavis
 		$error = 0; // Error counter
 
 	    if (in_array($parameters['currentcontext'], array('invoicecard'))) {    // do something only for the context 'somecontext1' or 'somecontext2'
-					$langs->load("kingavis@kingavis");
-					print '<a class="butAction" href="">'.$langs->trans("SendToKingAvis").'</a>';
+
+
+
+					if($conf->global->kingavisAutomation == "false"){
+						$langs->load("kingavis@kingavis");
+						print '<a class="butAction" href="">'.$langs->trans("SendToKingAvis").'</a>';
+					}
+
 		}
 
 		if (! $error) {
