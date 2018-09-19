@@ -97,5 +97,77 @@ class kingavis extends CommonObject
 	 $this->db = $db;
  }
 
+public function createRecord($facid, $datecrea, $user)
+{
+	$this->facid = $facid;
+	$this->date_creation = $datecrea;
+	$this->createCommon($user);
+}
+
+
+public function alreadyDone($invoiceid)
+{
+	$sql = "SELECT * FROM llx_kingavis WHERE facid = ".$invoiceid;
+	$resql=$this->db->query($sql);
+	if ($resql)
+	{
+		return $this->db->num_rows($resql);
+	}
+}
+
+public function sendAvis($object)
+{
+      global $conf, $user, $langs, $db;
+  require_once DOL_DOCUMENT_ROOT . "/core/lib/admin.lib.php";
+    $langs->load("kingavis@kingavis");
+    $idm = dolibarr_get_const($this->db,"marchandID",1);
+    $token = dolibarr_get_const($this->db,"marchandToken",1);
+    $pkey = dolibarr_get_const($this->db,"marchandPrivateKey",1);
+
+    if(empty($idm) || empty($token) || empty($pkey)){
+      setEventMessages($langs->trans("ErrorSend"),"", 'errors');
+      return 1;
+    }
+
+    $facnum = $object->ref;
+    $ttc = $object->total_ttc;
+
+    if($ttc == 0){ //if total is 0 we considering that as a sample order no reviews needed
+      return 1;
+    }
+
+    $iso_currency = $object->multicurrency_code;
+    require_once DOL_DOCUMENT_ROOT . "/societe/class/societe.class.php";
+    $soc = new Societe($db);
+    $soc->fetch($object->socid);
+    $prenom = $soc->nom;
+    $nom = "( ".$soc->name_alias." )";
+    $email = $soc->email;
+    if(empty($email)){ //pas d'email donc pas d'envoi
+        setEventMessages($langs->trans("ErrorSendMail"),"", 'errors');
+        return 1;
+    }
+
+    //we've got all the infos - proceed sending
+    $curl = curl_init();
+    $url = "https://king-avis.com/fr/merchantorder/add?id_merchant=".$idm."&token=".$token."&private_key=".$pkey."&ref_order=".$facnum."&email=".$email."&amount=".$ttc."&iso_currency=".$iso_currency."&firstname=".urlencode($prenom)."&lastname=".urlencode($nom)."&iso_lang=fr";
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+    $result = curl_exec($curl);
+    curl_close($curl);
+
+    if($result === "OK"){
+      setEventMessages($langs->trans("importSuccess"));
+      return 0;
+    }
+    else{
+      setEventMessages($langs->trans("ErrorGeneral"),"", 'errors');
+      dol_syslog("Error ".$this->name,LOG_WARNING);
+      return 1;
+    }
+
+}
 
 }

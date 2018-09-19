@@ -140,7 +140,10 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 								curl_close($curl);
 
 								if($result === "OK"){
-									setEventMessages($langs->trans("importSuccess"));
+										setEventMessages($langs->trans("importSuccess"));
+									include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
+									$avis = new KingAvis($db);
+									$avis->createRecord($object->id, new DateTime(), $user);
 									return 0;
 								}
 								else{

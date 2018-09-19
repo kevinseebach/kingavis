@@ -74,12 +74,20 @@ class Actionskingavis
 	 */
 	public function addMoreActionsButtons($parameters, &$object, &$action, $hookmanager)
 	{
-		global $conf, $user, $langs;
+		global $conf, $user, $langs, $db;
 		$error = 0; // Error counter
-	    if (in_array($parameters['currentcontext'], array('invoicecard'))) {    // do something only for the context 'somecontext1' or 'somecontext2'
+	    if (in_array($parameters['currentcontext'], array('invoicecard'))) {
+				    // do something only for the context 'somecontext1' or 'somecontext2'
 					if($conf->global->kingavisAutomation == "false"){
-						$langs->load("kingavis@kingavis");
-						print '<a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=sendKingAvis">'.$langs->trans("SendToKingAvis").'</a>';
+						include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
+						$avis = new KingAvis($db);
+
+						if($avis->alreadyDone($object->id) == 0)
+						{
+							$langs->load("kingavis@kingavis");
+							print '<a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=sendKingAvis">'.$langs->trans("SendToKingAvis").'</a>';
+						}
+
 					}
 		}
 
@@ -98,10 +106,15 @@ class Actionskingavis
 		{
 			$error = 0; // Error counter
 			$myvalue = 'test'; // A result value
-
+		global $conf, $user, $langs, $db;
 		 if (in_array($parameters['currentcontext'], array('invoicecard'))) {
 			  if($action == "sendKingAvis"){
-					//DO STUFF HERE
+					include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
+					$avis = new KingAvis($db);
+					if($avis->sendAvis($object)==0){
+						$avis->createRecord($object->id, new DateTime(), $user);
+					}
+
 				}
 			}
 
