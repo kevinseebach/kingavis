@@ -17,6 +17,7 @@
 # Générique
 #
 Reviews = Avis client
+SendToKingAvis = Envoyer la facture sur King Avis
 
 # Module label 'ModulekingAvisName'
 ModulekingAvisName = Mon module

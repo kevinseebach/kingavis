@@ -16,7 +16,7 @@
 #
 # Generic
 #
-
+SendToKingAvis = Send invoice to KingAvis
 # Module label 'ModulekingAvisName'
 ModulekingAvisName = kingAvis
 # Module description 'ModulekingAvisDesc'

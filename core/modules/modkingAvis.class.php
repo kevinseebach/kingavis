@@ -58,7 +58,9 @@ class modkingAvis extends DolibarrModules
 		$this->version = '1.0';
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		$this->picto='kingavis@kingavis';
-		$this->module_parts = array('triggers' => 1);
+		$this->module_parts = array('triggers' => 1,
+			'hooks'=>array('invoicecard')
+		);
 		$this->dirs = array();
 		$this->config_page_url = array("setup.php@kingavis");
 		$this->hidden = false;			// A condition to hide module
