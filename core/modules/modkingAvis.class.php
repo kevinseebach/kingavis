@@ -92,6 +92,9 @@ class modkingAvis extends DolibarrModules
 	public function init($options='')
 	{
 		$sql = array();
+
+		$result=$this->_load_tables('/kingavis/sql/');
+
 		return $this->_init($sql, $options);
 	}
 
