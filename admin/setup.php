@@ -120,18 +120,7 @@ if ($action == 'edit')
 		print $form->textwithpicto($langs->trans($key));
 		print '</td><td>';
 		  print $form->selectyesno($key, 0, 1);
-		// print '<select  name="'.$key.'"><option value=true';
-		// if ($conf->global->$key == true) {
-		// 		print " selected ";
-		// }
-		// print '>Oui</option>';
-		// print '<option value=false';
-		// if ($conf->global->$key == false) {
-		// 		print "selected";
-		// }
-		// print '>Non</option></select>';
-		//
-		// print '</td></tr>';
+		
 	}
 	print '</table>';
 	print '<br><div class="center">';
