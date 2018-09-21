@@ -55,7 +55,7 @@ class modkingAvis extends DolibarrModules
 		$this->descriptionlong = "Envoyez automatique vos factures sur la plateforme de recolte d'avis client King-Avis et améliorer votre force commerciale.";
 		$this->editor_name = 'Kevin Seebach';
 		$this->editor_url = 'https://www.example.com';
-		$this->version = '1.0';
+		$this->version = '2.0';
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		$this->picto='kingavis@kingavis';
 		$this->module_parts = array('triggers' => 1,
