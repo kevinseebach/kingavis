@@ -113,6 +113,9 @@ public function alreadyDone($invoiceid)
 	{
 		return $this->db->num_rows($resql);
 	}
+  else {
+    return 0;
+  }
 }
 
 public function sendAvis($object)

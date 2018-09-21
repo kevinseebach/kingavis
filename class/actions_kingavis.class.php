@@ -78,7 +78,8 @@ class Actionskingavis
 		$error = 0; // Error counter
 	    if (in_array($parameters['currentcontext'], array('invoicecard'))) {
 				    // do something only for the context 'somecontext1' or 'somecontext2'
-					if($conf->global->kingavisAutomation == "false"){
+            var_dump($conf->global->kingavisAutomation );
+					if($conf->global->kingavisAutomation == 0){
 						include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
 						$avis = new KingAvis($db);
 

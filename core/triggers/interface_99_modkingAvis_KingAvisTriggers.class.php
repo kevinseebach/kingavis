@@ -100,7 +100,7 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
         switch ($action) {
 
 			    case 'BILL_VALIDATE':
-							if($conf->global->kingavisAutomation == "true"){
+							if($conf->global->kingavisAutomation == 1){
 								$langs->load("kingavis@kingavis");
 								$idm = dolibarr_get_const($this->db,"marchandID",1);
 								$token = dolibarr_get_const($this->db,"marchandToken",1);
