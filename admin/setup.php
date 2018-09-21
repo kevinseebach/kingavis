@@ -119,8 +119,8 @@ if ($action == 'edit')
 		print '<tr class="oddeven"><td>';
 		print $form->textwithpicto($langs->trans($key));
 		print '</td><td>';
-		  print $form->selectyesno($key, 0, 1);
-		
+		  print $form->selectyesno($key, $conf->global->$key , 1);
+
 	}
 	print '</table>';
 	print '<br><div class="center">';
