@@ -119,18 +119,19 @@ if ($action == 'edit')
 		print '<tr class="oddeven"><td>';
 		print $form->textwithpicto($langs->trans($key));
 		print '</td><td>';
-		print '<select  name="'.$key.'"><option value=true';
-		if ($conf->global->$key == true) {
-				print " selected ";
-		}
-		print '>Oui</option>';
-		print '<option value=false';
-		if ($conf->global->$key == false) {
-				print "selected";
-		}
-		print '>Non</option></select>';
-
-		print '</td></tr>';
+		  print $form->selectyesno($key, 0, 1);
+		// print '<select  name="'.$key.'"><option value=true';
+		// if ($conf->global->$key == true) {
+		// 		print " selected ";
+		// }
+		// print '>Oui</option>';
+		// print '<option value=false';
+		// if ($conf->global->$key == false) {
+		// 		print "selected";
+		// }
+		// print '>Non</option></select>';
+		//
+		// print '</td></tr>';
 	}
 	print '</table>';
 	print '<br><div class="center">';
@@ -153,7 +154,7 @@ else
 	{
 		print '<tr class="oddeven"><td>';
 		print $form->textwithpicto($langs->trans($key));
-		print '</td><td>' . $conf->global->$key . '</td></tr>';
+		print '</td><td>' .yn($conf->global->$key)  . '</td></tr>';
 	}
 	print '</table>';
 	print '<div class="tabsAction">';
