@@ -105,7 +105,6 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 								$idm = $conf->global->marchandID;
 								$token =$conf->global->marchandToken;
 								$pkey = $conf->global->marchandPrivateKey;
-
 								if(empty($idm) || empty($token) || empty($pkey)){
 									setEventMessages($langs->trans("ErrorSend"),"", 'errors');
 									return 1;
@@ -131,7 +130,7 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 
 								//we've got all the infos - proceed sending
 								$curl = curl_init();
-								$url = "https://king-avis.com/fr/merchantorder/add?id_merchant=".$idm."&token=".$token."&private_key=".$pkey."&ref_order=".$facnum."&email=".$email."&amount=".$ttc."&iso_currency=".$iso_currency."&firstname=".urlencode($prenom)."&lastname=".urlencode($nom)."&iso_lang=fr";
+								$url = "https://king-avis.com/fr/merchantorder/add?id_merchant=".$idm."&token=".$token."&private_key=".$pkey."&ref_order=".$facnum."&email=".$email."&amount=".$ttc."&iso_currency=".$iso_currency."&firstname=".urlencode($prenom)."&lastname=".urlencode($nom)."&iso_lang=".$langs->defaultlang;
 								curl_setopt($curl, CURLOPT_URL, $url);
 								curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 								curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -140,8 +139,9 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 								curl_close($curl);
 
 								if($result === "OK"){
-										setEventMessages($langs->trans("importSuccess"));
+									setEventMessages($langs->trans("importSuccess"));
 									include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
+									global $db;
 									$avis = new KingAvis($db);
 									$avis->createRecord($object->id, new DateTime(), $user);
 									return 0;
