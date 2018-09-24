@@ -80,16 +80,13 @@ class Actionskingavis
 					if($conf->global->kingavisAutomation == 0){
 						include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
 						$avis = new KingAvis($db);
-
 						if($avis->alreadyDone($object->id) == 0)
 						{
 							$langs->load("kingavis@kingavis");
 							print '<a class="butAction" href="' . $_SERVER["PHP_SELF"] . '?id=' . $object->id . '&amp;action=sendKingAvis">'.$langs->trans("SendToKingAvis").'</a>';
 						}
-
 					}
 		}
-
 		if (! $error) {
 			return 0;                                    // or return 1 to replace standard code
 		} else {

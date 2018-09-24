@@ -102,9 +102,9 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 			    case 'BILL_VALIDATE':
 							if($conf->global->kingavisAutomation == 1){
 								$langs->load("kingavis@kingavis");
-								$idm = dolibarr_get_const($this->db,"marchandID",1);
-								$token = dolibarr_get_const($this->db,"marchandToken",1);
-								$pkey = dolibarr_get_const($this->db,"marchandPrivateKey",1);
+								$idm = $conf->global->marchandID;
+								$token =$conf->global->marchandToken;
+								$pkey = $conf->global->marchandPrivateKey;
 
 								if(empty($idm) || empty($token) || empty($pkey)){
 									setEventMessages($langs->trans("ErrorSend"),"", 'errors');
