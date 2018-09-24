@@ -7,6 +7,7 @@ Envoyer automatiquement vos factures Dolibarr vers la plateforme KingAvis pour r
 ## Requis
 
 Dolibarr : Version 6 ou Version 7 ou Version 8
+
 KingAvis : compte sur la plateforme (n'importe quelle offre)
 
 ## Installation
