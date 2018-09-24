@@ -25,10 +25,7 @@
  * \brief       This file is a CRUD class file for kingavis (Create/Read/Update/Delete)
  */
 
-// Put here all includes required by your class file
 require_once DOL_DOCUMENT_ROOT . '/core/class/commonobject.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/societe/class/societe.class.php';
-//require_once DOL_DOCUMENT_ROOT . '/product/class/product.class.php';
 
 /**
  * Class for kingavis
@@ -58,18 +55,7 @@ class kingavis extends CommonObject
  public $picto = 'kingavis';
 
 
- /**
-	*             'type' if the field format, 'label' the translation key, 'enabled' is a condition when the filed must be managed,
-	*             'visible' says if field is visible in list (-1 means not shown by default but can be aded into list to be viewed)
-	*             'notnull' if not null in database
-	*             'index' if we want an index in database
-	*             'position' is the sort order of field
-	*             'searchall' is 1 if we want to search in this field when making a search from the quick search button
-	*             'isameasure' must be set to 1 if you want to have a total on list for this field. Field type must be summable like integer or double(24,8).
-	*             'comment' is not used. You can store here any text of your choice.
-	*/
 
- // BEGIN MODULEBUILDER PROPERTIES
  /**
 	* @var array  Array with all fields and their property
 	*/
@@ -82,8 +68,6 @@ class kingavis extends CommonObject
  public $rowid;
  public $facid;
  public $date_creation;
- // END MODULEBUILDER PROPERTIES
-
 
 
 
@@ -120,57 +104,51 @@ public function alreadyDone($invoiceid)
 
 public function sendAvis($object)
 {
-      global $conf, $user, $langs, $db;
+  global $conf, $user, $langs, $db;
   require_once DOL_DOCUMENT_ROOT . "/core/lib/admin.lib.php";
-    $langs->load("kingavis@kingavis");
-    $idm = dolibarr_get_const($this->db,"marchandID",1);
-    $token = dolibarr_get_const($this->db,"marchandToken",1);
-    $pkey = dolibarr_get_const($this->db,"marchandPrivateKey",1);
+  $langs->load("kingavis@kingavis");
+  $idm = $conf->global->marchandID;
+  $token = $conf->global->marchandToken;
+  $pkey = $conf->global->marchandPrivateKey;
 
-    if(empty($idm) || empty($token) || empty($pkey)){
+  if(empty($idm) || empty($token) || empty($pkey)){
       setEventMessages($langs->trans("ErrorSend"),"", 'errors');
       return 1;
-    }
+  }
+  $facnum = $object->ref;
+  $ttc = $object->total_ttc;
 
-    $facnum = $object->ref;
-    $ttc = $object->total_ttc;
-
-    if($ttc == 0){ //if total is 0 we considering that as a sample order no reviews needed
+  if($ttc == 0){ //if total is 0 we considering that as a sample order no reviews needed
       return 1;
-    }
+  }
 
-    $iso_currency = $object->multicurrency_code;
-    require_once DOL_DOCUMENT_ROOT . "/societe/class/societe.class.php";
-    $soc = new Societe($db);
-    $soc->fetch($object->socid);
-    $prenom = $soc->nom;
-    $nom = "( ".$soc->name_alias." )";
-    $email = $soc->email;
-    if(empty($email)){ //pas d'email donc pas d'envoi
-        setEventMessages($langs->trans("ErrorSendMail"),"", 'errors');
-        return 1;
-    }
+  $iso_currency = $object->multicurrency_code;
+  require_once DOL_DOCUMENT_ROOT . "/societe/class/societe.class.php";
+  $soc = new Societe($db);
+  $soc->fetch($object->socid);
+  $prenom = $soc->nom;
+  $nom = "( ".$soc->name_alias." )";
+  $email = $soc->email;
+  if(empty($email)){ //pas d'email donc pas d'envoi
+      setEventMessages($langs->trans("ErrorSendMail"),"", 'errors');
+      return 1;
+  }
+  $curl = curl_init();
+  $url = "https://king-avis.com/fr/merchantorder/add?id_merchant=".$idm."&token=".$token."&private_key=".$pkey."&ref_order=".$facnum."&email=".$email."&amount=".$ttc."&iso_currency=".$iso_currency."&firstname=".urlencode($prenom)."&lastname=".urlencode($nom)."&iso_lang=fr";
+  curl_setopt($curl, CURLOPT_URL, $url);
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+  $result = curl_exec($curl);
+  curl_close($curl);
 
-    //we've got all the infos - proceed sending
-    $curl = curl_init();
-    $url = "https://king-avis.com/fr/merchantorder/add?id_merchant=".$idm."&token=".$token."&private_key=".$pkey."&ref_order=".$facnum."&email=".$email."&amount=".$ttc."&iso_currency=".$iso_currency."&firstname=".urlencode($prenom)."&lastname=".urlencode($nom)."&iso_lang=fr";
-    curl_setopt($curl, CURLOPT_URL, $url);
-    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
-    $result = curl_exec($curl);
-    curl_close($curl);
-
-    if($result === "OK"){
+  if($result === "OK"){
       setEventMessages($langs->trans("importSuccess"));
       return 0;
-    }
-    else{
+  }
+  else{
       setEventMessages($langs->trans("ErrorGeneral"),"", 'errors');
       dol_syslog("Error ".$this->name,LOG_WARNING);
       return 1;
-    }
-
+  }
 }
-
 }

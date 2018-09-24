@@ -64,7 +64,7 @@ class Actionskingavis
 	}
 
 	/**
-	 * Overloading the addMoreActionsButtons function : add custom function
+	 * Overloading the addMoreActionsButtons function : add sending Button
 	 *
 	 * @param   array()         $parameters     Hook metadatas (context, etc...)
 	 * @param   CommonObject    $object         The object to process (an invoice if you are in invoice module, a propale in propale's module, etc...)
@@ -75,7 +75,7 @@ class Actionskingavis
 	public function addMoreActionsButtons($parameters, &$object, &$action, $hookmanager)
 	{
 		global $conf, $user, $langs, $db;
-		$error = 0; // Error counter
+		$error = 0;
 	    if (in_array($parameters['currentcontext'], array('invoicecard'))) {
 					if($conf->global->kingavisAutomation == 0){
 						include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
@@ -88,7 +88,7 @@ class Actionskingavis
 					}
 		}
 		if (! $error) {
-			return 0;                                    // or return 1 to replace standard code
+			return 0;
 		} else {
 			$this->errors[] = 'Error message';
 			return -1;
@@ -97,12 +97,10 @@ class Actionskingavis
 
 
 
-
 	function doActions($parameters, &$object, &$action, $hookmanager)
 		{
-			$error = 0; // Error counter
-			$myvalue = 'test'; // A result value
-		global $conf, $user, $langs, $db;
+		 $error = 0;
+		 global $conf, $user, $langs, $db;
 		 if (in_array($parameters['currentcontext'], array('invoicecard'))) {
 			  if($action == "sendKingAvis"){
 					include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
@@ -110,15 +108,11 @@ class Actionskingavis
 					if($avis->sendAvis($object)==0){
 						$avis->createRecord($object->id, new DateTime(), $user);
 					}
-
 				}
 			}
-
 			if (! $error)
 			{
-				$this->results = array('myreturn' => $myvalue);
-				$this->resprints = 'A text to show';
-				return 0; // or return 1 to replace standard code
+				return 0;
 			}
 			else
 			{
