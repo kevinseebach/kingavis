@@ -4,6 +4,11 @@ Module KingAvis pour Dolibarr
 Module de liaison entre Dolibarr et la plateforme de récolte d'avis client [King Avis](https://king-avis.com/fr).
 Envoyer automatiquement vos factures Dolibarr vers la plateforme KingAvis pour récolter des retours clients et améliorer votre force commerciale.
 
+## Requis
+
+Dolibarr : Version 6 ou Version 7 ou Version 8
+KingAvis : compte sur la plateforme (n'importe quelle offre)
+
 ## Installation
 
 Télécharger le zip du module
