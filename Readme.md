@@ -32,7 +32,7 @@ Lorsque vous validez une facture, ses informations sont transmises à la platefo
 
 ## Evolution
 
-Ce module en est à sa version 1 initiale.
+Ce module en est à sa version 2.
 N'hésitez pas à proposer de nouvelles fonctionnalités et/ou évolution via les issues de se répo.
 
 
