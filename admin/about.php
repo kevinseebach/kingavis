@@ -76,7 +76,7 @@ dol_fiche_head($head,'about',$langs->trans("kingAvisName"),0,'kingavis@kingavis'
 echo $langs->trans("kingAvisAboutPage");
 echo '<br>';
 
-dol_include_once('/kingavis/core/modules/modkingAvis.class.php');
+dol_include_once('../core/modules/modkingAvis.class.php');
 $tmpmodule = new modkingAvis($db);
 print $tmpmodule->getDescLong();
 

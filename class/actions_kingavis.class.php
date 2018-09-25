@@ -78,7 +78,7 @@ class Actionskingavis
 		$error = 0;
 	    if (in_array($parameters['currentcontext'], array('invoicecard'))) {
 					if($conf->global->kingavisAutomation == 0){
-						include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
+						include_once 'kingavis.class.php';
 						$avis = new KingAvis($db);
 						if($avis->alreadyDone($object->id) == 0)
 						{
@@ -103,7 +103,7 @@ class Actionskingavis
 		 global $conf, $user, $langs, $db;
 		 if (in_array($parameters['currentcontext'], array('invoicecard'))) {
 			  if($action == "sendKingAvis"){
-					include_once DOL_DOCUMENT_ROOT . '/kingavis/class/kingavis.class.php';
+					include_once 'kingavis.class.php';
 					$avis = new KingAvis($db);
 					if($avis->sendAvis($object)==0){
 						$avis->createRecord($object->id, new DateTime(), $user);

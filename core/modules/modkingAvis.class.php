@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 /**
  * 	\defgroup   kingavis     Module kingAvis
  *  \brief      kingAvis module descriptor.
@@ -25,9 +24,12 @@
  *  \brief      Description and activation file for module kingAvis
  */
 include_once DOL_DOCUMENT_ROOT .'/core/modules/DolibarrModules.class.php';
-
-
-/
+// The class name should start with a lower case mod for Dolibarr to pick it up
+// so we ignore the Squiz.Classes.ValidClassName.NotCamelCaps rule.
+// @codingStandardsIgnoreStart
+/**
+ *  Description and activation class for module kingAvis
+ */
 class modkingAvis extends DolibarrModules
 {
 	// @codingStandardsIgnoreEnd
@@ -49,13 +51,11 @@ class modkingAvis extends DolibarrModules
 		$this->description = "Envoyez vos factures sur la plateforme King-Avis";
 		$this->descriptionlong = "Envoyez automatique vos factures sur la plateforme de recolte d'avis client King-Avis et améliorer votre force commerciale.";
 		$this->editor_name = 'Kevin Seebach';
-		$this->editor_url = 'https://abraham63.github.io/kingavis/';
-		$this->version = '2.0';
+		$this->editor_url = 'https://www.example.com';
+		$this->version = '1.0';
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		$this->picto='kingavis@kingavis';
-		$this->module_parts = array('triggers' => 1,
-			'hooks'=>array('invoicecard')
-		);
+		$this->module_parts = array('triggers' => 1);
 		$this->dirs = array();
 		$this->config_page_url = array("setup.php@kingavis");
 		$this->hidden = false;			// A condition to hide module
@@ -63,7 +63,7 @@ class modkingAvis extends DolibarrModules
 		$this->requiredby = array();	// List of module ids to disable if this one is disabled
 		$this->conflictwith = array();	// List of module class names as string this module is in conflict with
 		$this->phpmin = array(5,3);					// Minimum version of PHP required by module
-		$this->need_dolibarr_version = array(6,0);	// Minimum version of Dolibarr required by module
+		$this->need_dolibarr_version = array(4,0);	// Minimum version of Dolibarr required by module
 		$this->langfiles = array("kingavis@kingavis");
 		$this->warnings_activation = array();                     // Warning to show when we activate module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
 		$this->warnings_activation_ext = array();                 // Warning to show when we activate an external module. array('always'='text') or array('FR'='textfr','ES'='textes'...)
@@ -77,7 +77,6 @@ class modkingAvis extends DolibarrModules
 		$this->menu = array();
 		$r=0;
 	}
-
 	/**
 	 *		Function called when module is enabled.
 	 *		The init function add constants, boxes, permissions and menus (defined in constructor) into Dolibarr database.
@@ -89,12 +88,8 @@ class modkingAvis extends DolibarrModules
 	public function init($options='')
 	{
 		$sql = array();
-
-		$result=$this->_load_tables('/kingavis/sql/');
-
 		return $this->_init($sql, $options);
 	}
-
 	/**
 	 * Function called when module is disabled.
 	 * Remove from database constants, boxes and permissions from Dolibarr database.
@@ -108,5 +103,4 @@ class modkingAvis extends DolibarrModules
 		$sql = array();
 		return $this->_remove($sql, $options);
 	}
-
 }
