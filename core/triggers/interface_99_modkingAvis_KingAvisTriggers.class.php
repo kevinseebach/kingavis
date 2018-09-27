@@ -53,7 +53,6 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 	public function __construct($db)
 	{
 		$this->db = $db;
-
 		$this->name = preg_replace('/^Interface/i', '', get_class($this));
 		$this->family = "demo";
 		$this->description = "kingAvis triggers.";

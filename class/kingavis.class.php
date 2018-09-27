@@ -70,7 +70,6 @@ class kingavis extends CommonObject
  public $date_creation;
 
 
-
  /**
 	* Constructor
 	*

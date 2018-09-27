@@ -96,7 +96,6 @@ class Actionskingavis
 	}
 
 
-
 	function doActions($parameters, &$object, &$action, $hookmanager)
 		{
 		 $error = 0;
