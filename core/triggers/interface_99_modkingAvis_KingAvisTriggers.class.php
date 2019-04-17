@@ -118,7 +118,6 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 
 								$iso_currency = $object->multicurrency_code;
 
-
 								$prenom = $object->thirdparty->nom;
 								$nom = "( ".$object->thirdparty->name_alias." )";
 								$email = $object->thirdparty->email;
