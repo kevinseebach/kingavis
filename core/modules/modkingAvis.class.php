@@ -15,7 +15,6 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 /**
  * 	\defgroup   kingavis     Module kingAvis
  *  \brief      kingAvis module descriptor.
@@ -25,8 +24,6 @@
  *  \brief      Description and activation file for module kingAvis
  */
 include_once DOL_DOCUMENT_ROOT .'/core/modules/DolibarrModules.class.php';
-
-
 // The class name should start with a lower case mod for Dolibarr to pick it up
 // so we ignore the Squiz.Classes.ValidClassName.NotCamelCaps rule.
 // @codingStandardsIgnoreStart
@@ -80,7 +77,6 @@ class modkingAvis extends DolibarrModules
 		$this->menu = array();
 		$r=0;
 	}
-
 	/**
 	 *		Function called when module is enabled.
 	 *		The init function add constants, boxes, permissions and menus (defined in constructor) into Dolibarr database.
@@ -94,7 +90,6 @@ class modkingAvis extends DolibarrModules
 		$sql = array();
 		return $this->_init($sql, $options);
 	}
-
 	/**
 	 * Function called when module is disabled.
 	 * Remove from database constants, boxes and permissions from Dolibarr database.
@@ -108,5 +103,4 @@ class modkingAvis extends DolibarrModules
 		$sql = array();
 		return $this->_remove($sql, $options);
 	}
-
 }
