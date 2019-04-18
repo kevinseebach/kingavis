@@ -42,7 +42,7 @@ Settings = Réglages
 kingAvisSetupPage = Page de réglage du module King-Avis
 FindYourInfo = Vous pouvez trouver ces informations sur votre espace King-Avis dans l'onglet Accueil de votre compte.
 kingavisAutomation = Envoyer automatiquement vos factures sur la plateforme
-
+AutomationYN = Envoyer automatiquement les factures ou via un bouton
 #
 # Page À propos
 #
