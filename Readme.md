@@ -18,7 +18,7 @@ Décompresser l'archive. Vérifier que le dossier s'appelle kingavis
 
 Placer les dossiers dans votre instance Dolibarr (dossier htdocs)
 
-Aller dans la configuration des modules et activer le mondule KingAvis (présent dans le groupe Autres)
+Aller dans la configuration des modules et activer le module KingAvis (présent dans le groupe Autres)
 
 Configurer le module en renseignant votre ID, votre token et votre clef marchand. Ces informations sont disponibles sur votre compte KingAvis (fonctionne même avec le compte gratuit)
 
@@ -27,7 +27,7 @@ Configurer le module en renseignant votre ID, votre token et votre clef marchand
 
 ## Fonctionnement
 
-Lorsque vous validez une facture, ses informations sont transmises à la plateforme qui envera le mail. Vous pouvez configurer le délai avant l'envoi dans votre compte King Avis.
+Lorsque vous validez une facture, ses informations sont transmises à la plateforme qui enverra le mail. Vous pouvez configurer le délai avant l'envoi dans votre compte King Avis.
 
 
 ## Evolution
