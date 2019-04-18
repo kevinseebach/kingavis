@@ -38,6 +38,7 @@ Settings = Settings
 kingAvisSetupPage = KingAvis setup page
 FindYourInfo = You can these information on your King-Avis backoffice in Home tab
 kingavisAutomation = Automaticaly send your invoice ?
+AutomationYN = Send automaticaly or on dedicated button click
 #
 # About page
 #

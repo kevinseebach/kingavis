@@ -74,8 +74,8 @@ dol_fiche_head($head,'settings',$langs->trans("modkingAvis"),0,"kingavis@kingavi
 
 // Setup page goes here
 echo $langs->trans("kingAvisSetupPage");
-$arrayofparameters=array('marchandID'=>array('marchandID'=>''), 'marchandToken'=>array('marchandToken'=>''), 'marchandPrivateKey'=>array('marchandPrivateKey'=>''));
-$arrayofparameters2 = array('kingavisAutomation'=>array('kingavisAutomation'=>''));
+$identification_parameters=array('marchandID'=>array('marchandID'=>''), 'marchandToken'=>array('marchandToken'=>''), 'marchandPrivateKey'=>array('marchandPrivateKey'=>''));
+$process_parameters = array('kingavisAutomation'=>array('kingavisAutomation'=>''));
 
 
 if ($action == 'update' && empty($_POST["cancel"]))
@@ -94,13 +94,13 @@ if ($action == 'edit')
 	print '<input type="hidden" name="action" value="update">';
 	print '<table class="noborder" width="100%">';
 	print '<tr class="liste_titre"><td class="titlefield">'.$langs->trans("Parameter").'</td><td>'.$langs->trans("Value").'</td></tr>';
-	foreach($arrayofparameters as $key => $val)
+	foreach($identification_parameters as $key => $val)
 	{
 		print '<tr class="oddeven"><td>';
 		print $form->textwithpicto($langs->trans($key),$langs->trans('FindYourInfo'));
 		print '</td><td><input name="'.$key.'"  class="flat" value="' . $conf->global->$key . '"></td></tr>';
 	}
-	foreach($arrayofparameters2 as $key => $val)
+	foreach($process_parameters as $key => $val)
 	{
 		print '<tr class="oddeven"><td>';
 		print $form->textwithpicto($langs->trans($key));
@@ -119,16 +119,16 @@ else
 {
 	print '<table class="noborder" width="100%">';
 	print '<tr class="liste_titre"><td class="titlefield">'.$langs->trans("Parameter").'</td><td>'.$langs->trans("Value").'</td></tr>';
-	foreach($arrayofparameters as $key => $val)
+	foreach($identification_parameters as $key => $val)
 	{
 		print '<tr class="oddeven"><td>';
 		print $form->textwithpicto($langs->trans($key),$langs->trans('FindYourInfo'));
 		print '</td><td>' . $conf->global->$key . '</td></tr>';
 	}
-	foreach($arrayofparameters2 as $key => $val)
+	foreach($process_parameters as $key => $val)
 	{
 		print '<tr class="oddeven"><td>';
-		print $form->textwithpicto($langs->trans($key));
+		print $form->textwithpicto($langs->trans($key),$langs->trans('AutomationYN'));
 		print '</td><td>' .yn($conf->global->$key)  . '</td></tr>';
 	}
 	print '</table>';
