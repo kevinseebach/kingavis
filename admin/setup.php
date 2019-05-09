@@ -103,7 +103,7 @@ if ($action == 'edit')
 	foreach($process_parameters as $key => $val)
 	{
 		print '<tr class="oddeven"><td>';
-		print $form->textwithpicto($langs->trans($key));
+		print $form->textwithpicto($langs->trans($key),$langs->trans('AutomationYN'));
 		print '</td><td>';
 		  print $form->selectyesno($key, $conf->global->$key , 1);
 
