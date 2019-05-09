@@ -126,10 +126,13 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 										setEventMessages($langs->trans("ErrorSendMail"),"", 'errors');
 										return 1;
 								}
-
+								$availableLanguages = array("fr", "de", "en", "it");
+								if($soc->default_lang != null && in_array(substr($soc->default_lang,0,2),$availableLanguages)){ $langMail = substr($soc->default_lang,0,2);  }
+							  else if(in_array(substr($langs->defaultlang,0,2),$availableLanguages)){$langMail = substr($langs->defaultlang,0,2);}
+							  else{$langMail = 'fr';}
 								//we've got all the infos - proceed sending
 								$curl = curl_init();
-								$url = "https://king-avis.com/fr/merchantorder/add?id_merchant=".$idm."&token=".$token."&private_key=".$pkey."&ref_order=".$facnum."&email=".$email."&amount=".$ttc."&iso_currency=".$iso_currency."&firstname=".urlencode($prenom)."&lastname=".urlencode($nom)."&iso_lang=".$langs->defaultlang;
+								$url = "https://king-avis.com/fr/merchantorder/add?id_merchant=".$idm."&token=".$token."&private_key=".$pkey."&ref_order=".$facnum."&email=".$email."&amount=".$ttc."&iso_currency=".$iso_currency."&firstname=".urlencode($prenom)."&lastname=".urlencode($nom)."&iso_lang=".$langMail;
 								curl_setopt($curl, CURLOPT_URL, $url);
 								curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 								curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
