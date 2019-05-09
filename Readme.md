@@ -27,8 +27,18 @@ Configurer le module en renseignant votre ID, votre token et votre clef marchand
 
 ## Fonctionnement
 
+### Mode automatique
 Lorsque vous validez une facture, ses informations sont transmises à la plateforme qui enverra le mail. Vous pouvez configurer le délai avant l'envoi dans votre compte King Avis.
 
+### Mode manuel
+Lorsque vous validez une facture, un bouton permettant de l'envoyer à la plateforme KingAvis est disponible sur la fiche de la facture. En cliquant sur celui-ci, les informations sont envoyées pour une demande d'avis.Vous pouvez configurer le délai avant l'envoi dans votre compte King Avis.
+
+### Sélection de la langue du mail
+Voici l'ordre de priorité du choix des langues :
+1- Langue par defaut de la société (si elle est définie et est supportée)
+2- Langue par defaut de Dolibarr (si elle est supportée)
+3- Le français
+Les langues supportées sont le français, l'anglais, l'italien et l'allemand.
 
 ## Evolution
 
