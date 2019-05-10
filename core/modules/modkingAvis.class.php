@@ -30,7 +30,7 @@ include_once DOL_DOCUMENT_ROOT .'/core/modules/DolibarrModules.class.php';
 /**
  *  Description and activation class for module kingAvis
  */
-class modkingAvis extends DolibarrModules
+class modKingavis extends DolibarrModules
 {
 	// @codingStandardsIgnoreEnd
 	/**
@@ -43,11 +43,11 @@ class modkingAvis extends DolibarrModules
     global $langs,$conf;
     $this->db = $db;
 		// Id for module (must be unique).
-		$this->numero = 5286217;		// TODO Go on page https://wiki.dolibarr.org/index.php/List_of_modules_id to reserve id number for your module
+		$this->numero = 4851894615;		// TODO Go on page https://wiki.dolibarr.org/index.php/List_of_modules_id to reserve id number for your module
 		$this->rights_class = 'kingavis';
 		$this->family = "other";
 		$this->module_position = 500;
-		$this->name = "KingAvis";
+		$this->name = "Kingavis";
 		$this->description = "Envoyez vos factures sur la plateforme King-Avis";
 		$this->descriptionlong = "Envoyez automatique vos factures sur la plateforme de recolte d'avis client King-Avis et améliorer votre force commerciale.";
 		$this->editor_name = 'Kevin Seebach';
@@ -55,11 +55,11 @@ class modkingAvis extends DolibarrModules
 		$this->version = '2.0';
 		$this->const_name = 'MAIN_MODULE_'.strtoupper($this->name);
 		$this->picto='kingavis@kingavis';
-		$this->module_parts = array('triggers' => 1);
+		$this->module_parts = array('triggers' => 1,'hooks' => array('invoicecard'));
 		$this->dirs = array();
 		$this->config_page_url = array("setup.php@kingavis");
 		$this->hidden = false;			// A condition to hide module
-		$this->depends = array("Facture");		// List of module class names as string that must be enabled if this module is enabled
+	//	$this->depends = array("Facture");		// List of module class names as string that must be enabled if this module is enabled
 		$this->requiredby = array();	// List of module ids to disable if this one is disabled
 		$this->conflictwith = array();	// List of module class names as string this module is in conflict with
 		$this->phpmin = array(5,3);					// Minimum version of PHP required by module

@@ -28,7 +28,7 @@
  *
  * @return array
  */
-function kingAvisAdminPrepareHead()
+function kingavisAdminPrepareHead()
 {
 	global $langs, $conf;
 	$langs->load("kingavis@kingavis");

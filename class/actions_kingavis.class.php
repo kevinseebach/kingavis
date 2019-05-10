@@ -24,9 +24,9 @@
  */
 
 /**
- * Class Actionstest
+ * Class ActionsKingavis
  */
-class Actionskingavis
+class ActionsKingavis
 {
     /**
      * @var DoliDB Database handler.
@@ -74,12 +74,13 @@ class Actionskingavis
 	 */
 	public function addMoreActionsButtons($parameters, &$object, &$action, $hookmanager)
 	{
+
 		global $conf, $user, $langs, $db;
 		$error = 0;
 	    if (in_array($parameters['currentcontext'], array('invoicecard'))) {
 					if($conf->global->kingavisAutomation == 0){
 						include_once 'kingavis.class.php';
-						$avis = new KingAvis($db);
+						$avis = new Kingavis($db);
 						if($avis->alreadyDone($object->id) == 0)
 						{
 							$langs->load("kingavis@kingavis");
@@ -103,7 +104,7 @@ class Actionskingavis
 		 if (in_array($parameters['currentcontext'], array('invoicecard'))) {
 			  if($action == "sendKingAvis"){
 					include_once 'kingavis.class.php';
-					$avis = new KingAvis($db);
+					$avis = new Kingavis($db);
 					if($avis->sendAvis($object)==0){
 						$avis->createRecord($object->id, new DateTime(), $user);
 					}

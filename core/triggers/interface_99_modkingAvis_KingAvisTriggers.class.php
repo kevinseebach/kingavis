@@ -38,7 +38,7 @@ require_once DOL_DOCUMENT_ROOT.'/core/triggers/dolibarrtriggers.class.php';
 /**
  *  Class of triggers for kingAvis module
  */
-class InterfaceKingAvisTriggers extends DolibarrTriggers
+class InterfaceKingavisTriggers extends DolibarrTriggers
 {
 	/**
 	 * @var DoliDB Database handler
@@ -144,7 +144,7 @@ class InterfaceKingAvisTriggers extends DolibarrTriggers
 									setEventMessages($langs->trans("importSuccess"));
 									include_once '../../class/kingavis.class.php';
 									global $db;
-									$avis = new KingAvis($db);
+									$avis = new Kingavis($db);
 									$avis->createRecord($object->id, new DateTime(), $user);
 									return 0;
 								}

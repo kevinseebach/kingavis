@@ -1,0 +1,113 @@
+<div class="general-block-decorator">
+  <div class="row">
+
+    <div class="col-md-12 title title-without-tabs">
+      Configurez la connexion à votre instance Dolibarr
+    </div>
+
+    <div class="form-container">
+      <div class="col-md-12">
+
+        {form name="KingAvis.config"}
+          <form method="POST" id="KingAvis-form" action="{url path="/admin/module/kingavis/save"}" {form_enctype form=$form} class="clearfix">
+
+            {form_hidden_fields form=$form}
+
+            {form_field form=$form field='marchand_id'}
+              <div class="form-group {if $error}has-error{/if}">
+                <label class="control-label" for="{$label_attr.for}">
+                  {$label}
+                  <span class="required">*</span>
+                  {form_error form=$form field="marchand_id"}
+                      <br />
+                      <span class="error">{$message}</span>
+                  {/form_error}
+                </label>
+                <input id="tka_config-id-base_url" class="form-control " type="text" required="" aria-required="true" value="{$value}" name="{$name}">
+              </div>
+            {/form_field}
+
+            {form_field form=$form field='marchand_token'}
+            <div class="form-group {if $error}has-error{/if}">
+              <label class="control-label" for="{$label_attr.for}">
+                {$label}
+                <span class="required">*</span>
+                {form_error form=$form field="marchand_token"}
+                    <br />
+                    <span class="error">{$message}</span>
+                {/form_error}
+              </label>
+              <input id="tka_config-id-api_key" class="form-control " type="text" required="" aria-required="true" value="{$value}" name="{$name}">
+            </div>
+            {/form_field}
+
+            {form_field form=$form field='marchand_private_key'}
+            <div class="form-group {if $error}has-error{/if}">
+              <label class="control-label" for="{$label_attr.for}">
+                {$label}
+                <span class="required">*</span>
+                {form_error form=$form field="marchand_private_key"}
+                    <br />
+                    <span class="error">{$message}</span>
+                {/form_error}
+              </label>
+              <input id="tka_config-id_compte_paiement" class="form-control " type="text" required="" aria-required="true" value="{$value}" name="{$name}">
+            </div>
+            {/form_field}
+
+            {form_field form=$form field='status_release'}
+            <div class="form-group {if $error}has-error{/if}">
+              <label class="control-label" for="{$label_attr.for}">
+                {$label}
+                <span class="required">*</span>
+                {form_error form=$form field="status_release"}
+                    <br />
+                    <span class="error">{$message}</span>
+                {/form_error}
+              </label>
+              <fieldset>
+                {loop type="order-status" name="tka_list_status_available" }
+                <input style=display:none;" type="radio" name="{$name}" id={$ID} value={$ID} {if $value == $ID}checked="checked"{/if}>  <label for="{$ID}" class=tka_status_label>{$TITLE}</label>
+                {/loop}
+
+              </fieldset>
+<style media="screen">
+  .tka_status_label {
+    border:1px solid #ccc;
+    margin: 5px;
+    padding : 5px 15px;
+    border-radius:10px;
+    cursor:pointer;
+  }
+  input[type="radio"]:checked + .tka_status_label {
+    color:#50a05d;
+    border:1px solid #50a05d;
+  }
+</style>
+            </div>
+            {/form_field}
+
+            <button type="submit" id="tka-save" name="tka_save" value="save" class="form-submit-button btn btn-sm btn-default" title="Save">Valider</button>
+          </form>
+        {/form}
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="general-block-decorator">
+  <div class="row">
+
+    <div class="col-md-12 title title-without-tabs">
+      Trouvez vos informations de connection
+    </div>
+
+    <div class="form-container">
+      <div class="col-md-12">
+        <img src="https://king-avis.com/themes/default/img/pages/integration-code-manuel-2.jpg" alt="">
+      </div>
+    </div>
+</div>

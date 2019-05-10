@@ -30,7 +30,7 @@ require_once DOL_DOCUMENT_ROOT . '/core/class/commonobject.class.php';
 /**
  * Class for kingavis
  */
-class kingavis extends CommonObject
+class Kingavis extends CommonObject
 {
  /**
 	* @var string ID to identify managed object
@@ -147,7 +147,7 @@ public function sendAvis($object)
   curl_close($curl);
 
   if($result === "OK"){
-      setEventMessages($langs->trans("importSuccess"));
+      setEventMessages($langs->trans("importSuccess"),"", 'success');
       return 0;
   }
   else{

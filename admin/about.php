@@ -35,7 +35,7 @@ if (! $res) die("Include of main fails");
 
 require_once DOL_DOCUMENT_ROOT.'/core/lib/admin.lib.php';
 require_once DOL_DOCUMENT_ROOT.'/core/lib/functions2.lib.php';
-require_once '../lib/kingavis.lib.php';
+require_once '../lib/kingAvis.lib.php';
 
 $langs->load("errors");
 $langs->load("admin");
@@ -76,9 +76,9 @@ dol_fiche_head($head,'about',$langs->trans("kingAvisName"),0,'kingavis@kingavis'
 echo $langs->trans("kingAvisAboutPage");
 echo '<br>';
 
-dol_include_once('../core/modules/modkingAvis.class.php');
-$tmpmodule = new modkingAvis($db);
-print $tmpmodule->getDescLong();
+// dol_include_once('../core/modules/modkingAvis.class.php');
+// $tmpmodule = new modkingAvis($db);
+// print $tmpmodule->getDescLong();
 
 // Page end
 dol_fiche_end();
