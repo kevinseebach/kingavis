@@ -147,7 +147,7 @@ public function sendAvis($object)
   curl_close($curl);
 
   if($result === "OK"){
-      setEventMessages($langs->trans("importSuccess"),"", 'success');
+      setEventMessages($langs->trans("importSuccess"),"", 'mesgs');
       return 0;
   }
   else{
