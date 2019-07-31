@@ -141,7 +141,7 @@ class InterfaceKingavisTriggers extends DolibarrTriggers
 								curl_close($curl);
 
 								if($result === "OK"){
-									setEventMessages($langs->trans("importSuccess"));
+									setEventMessages($langs->trans("importSuccess"),"", 'mesgs');
 									include_once '../../class/kingavis.class.php';
 									global $db;
 									$avis = new Kingavis($db);
