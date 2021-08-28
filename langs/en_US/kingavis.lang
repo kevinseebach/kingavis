@@ -30,6 +30,7 @@ ErrorSendMailLivraison = Error when sending to King-Avis. No email available for
 importSuccess = Successfully import on King-Avis platform
 ErrorGeneral = Error during import on King-Avis platform
 Reviews = Customer reviews
+ErrorConfig = KingAvis configuration is missing
 #
 # Admin page
 #

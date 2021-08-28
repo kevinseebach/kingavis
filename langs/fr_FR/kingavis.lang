@@ -28,12 +28,12 @@ BackToModuleList = Retour à la liste des modules
 marchandID = Votre ID marchand
 marchandToken = Votre token marchand
 marchandPrivateKey = Votre clef privée marchand
-ErrorSend = Erreur lors de l'envoi vers King-Avis. Non importée
-ErrorSendMail = Erreur lors de l'envoi vers King-Avis. Aucun mail disponible. Non importée
-ErrorSendMailLivraison = Erreur lors de l'envoi vers King-Avis. Aucun mail disponible pour le contact de livraison. Non importée
+ErrorSend = Import KingAvis impossible : erreur générique
+ErrorSendMail = Import KingAvis impossible : le tiers n'a pas d'adresse email
+ErrorSendMailLivraison = Import KingAvis impossible : le contact de livraison n'a pas d'adresse email
 importSuccess = Importée avec succes sur King-Avis
-ErrorGeneral = Erreur lors de l'import sur King-Avis
-
+ErrorGeneral = Import KingAvis impossible : erreur générique
+ErrorConfig = Configuration KingAvis manquante ! Import impossible, merci configurez le module KingAvis
 #
 # Page d'administration
 #
