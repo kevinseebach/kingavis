@@ -111,7 +111,7 @@ public function sendAvis($object)
   $pkey = $conf->global->marchandPrivateKey;
 
   if(empty($idm) || empty($token) || empty($pkey)){
-      setEventMessages($langs->trans("ErrorSend"),"", 'errors');
+      setEventMessages($langs->trans("ErrorConfig"),"", 'errors');
       return 1;
   }
   $facnum = $object->ref;
