@@ -57,7 +57,7 @@ class InterfaceKingavisTriggers extends DolibarrTriggers
 		$this->family = "development";
 		$this->description = "kingAvis triggers.";
 		// 'development', 'experimental', 'dolibarr' or version
-		$this->version = 'development';
+		$this->version = '2';
 		$this->picto = 'kingavis@kingavis';
 	}
 
@@ -101,23 +101,15 @@ class InterfaceKingavisTriggers extends DolibarrTriggers
 			    case 'BILL_VALIDATE':
 							if($conf->global->kingavisAutomation == 1){
 								$langs->load("kingavis@kingavis");
-								$idm = $conf->global->marchandID;
-								$token =$conf->global->marchandToken;
-								$pkey = $conf->global->marchandPrivateKey;
-								if(empty($idm) || empty($token) || empty($pkey)){
-									setEventMessages($langs->trans("ErrorSend"),"", 'errors');
+
+								if(empty($conf->global->marchandID) || empty($conf->global->marchandToken) || empty($conf->global->marchandPrivateKey)){
+									setEventMessages($langs->trans("ErrorConfig"),"", 'errors');
 									return 1;
 								}
 
-								$facnum = $object->ref;
-								$ttc = $object->total_ttc;
-
-								if($ttc == 0){ //if total is 0 we considering that as a sample order no reviews needed
-									return 1;
-								}
+								if($object->total_ttc == 0) return 1;
 
 								$iso_currency = $object->multicurrency_code;
-
 
 								$prenom = $object->thirdparty->nom;
 								$nom = "( ".$object->thirdparty->name_alias." )";
@@ -126,17 +118,18 @@ class InterfaceKingavisTriggers extends DolibarrTriggers
 										setEventMessages($langs->trans("ErrorSendMail"),"", 'errors');
 										return 1;
 								}
+
 								$availableLanguages = array("fr", "de", "en", "it");
 								if($soc->default_lang != null && in_array(substr($soc->default_lang,0,2),$availableLanguages)){ $langMail = substr($soc->default_lang,0,2);  }
 							  else if(in_array(substr($langs->defaultlang,0,2),$availableLanguages)){$langMail = substr($langs->defaultlang,0,2);}
 							  else{$langMail = 'fr';}
+
 								//we've got all the infos - proceed sending
 								$curl = curl_init();
-								$url = "https://king-avis.com/fr/merchantorder/add?id_merchant=".$idm."&token=".$token."&private_key=".$pkey."&ref_order=".$facnum."&email=".$email."&amount=".$ttc."&iso_currency=".$iso_currency."&firstname=".urlencode($prenom)."&lastname=".urlencode($nom)."&iso_lang=".$langMail;
+								$url = "https://king-avis.com/fr/merchantorder/add?id_merchant=".$conf->global->marchandID."&token=".$conf->global->marchandToken."&private_key=".$conf->global->marchandPrivateKey."&ref_order=".$object->ref."&email=".$email."&amount=".$object->total_ttc."&iso_currency=".$iso_currency."&firstname=".urlencode($prenom)."&lastname=".urlencode($nom)."&iso_lang=".$langMail;
 								curl_setopt($curl, CURLOPT_URL, $url);
 								curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
 								curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-
 								$result = curl_exec($curl);
 								curl_close($curl);
 
@@ -150,7 +143,6 @@ class InterfaceKingavisTriggers extends DolibarrTriggers
 								}
 								else{
 									setEventMessages($langs->trans("ErrorGeneral"),"", 'errors');
-									dol_syslog("Error ".$this->name,LOG_WARNING);
 									return 1;
 								}
 							}
